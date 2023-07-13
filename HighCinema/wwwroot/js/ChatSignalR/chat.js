@@ -21,6 +21,7 @@ async function LoadConversations(senderId, message) {
         if (senderId === currentUserId) {
             const node = document.createElement("div");
             node.className = 'messages__item messages__item--operator';
+            node.style = 'background-color: orange';
             const textnode = document.createElement("p");
             textnode.textContent = `${message}`;
             node.appendChild(textnode);
@@ -42,9 +43,10 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
+document.getElementById("sendButton").addEventListener("click", async function (event) {
     var message = document.getElementById("messageInput").value;
-    var senderId = document.getElementById("senderID").value;
+    var senderId = await TakeSessionUserID();
+    console.log(senderId);
 
     connection.invoke("SendMessage", senderId, message).catch(function (err) {
         console.error(err.toString());
