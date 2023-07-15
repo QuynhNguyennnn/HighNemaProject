@@ -10,6 +10,7 @@ namespace DataAccess.respository
     public interface ITicketRepository
     {
         IEnumerable<Ticket> GetTickets();
+        IEnumerable<Ticket> GetTicketsByMovieID(int movieID);
         Ticket GetTicketByID(int ticketId);
         void DeleteTicket(int ticketId);
         void InsertTicket(Ticket ticket);

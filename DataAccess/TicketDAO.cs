@@ -26,6 +26,20 @@ namespace DataAccess
             }
         }
 
+        public IEnumerable<Ticket> GetTicketsByMovieID(int movieID)
+        {
+            var tickets = new List<Ticket>();
+            try
+            {
+                using var context = new CinemaProject_v4Context();
+                tickets = context.Tickets.Where(c => c.IdMovie == movieID).ToList();
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return tickets;
+        }
+
         public IEnumerable<Ticket> GetTicketList()
         {
             var ticket = new List<Ticket>();

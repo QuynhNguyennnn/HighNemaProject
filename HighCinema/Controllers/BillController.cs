@@ -9,7 +9,7 @@ namespace HighCinema.Controllers
 {
     public class BillController : Controller
     {
-        /*IBillRepository billRepository = null;
+        IBillRepository billRepository = null;
         public BillController() => billRepository = new BillRepository();
         // GET: FastFoodController
         public ActionResult Index()
@@ -69,7 +69,7 @@ namespace HighCinema.Controllers
             }
         }
 
-        // GET: FastFoodController/Edit/5
+        /*// GET: FastFoodController/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
