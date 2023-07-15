@@ -171,7 +171,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
 
-
     <!--CSS for Data table-->
     <style>
         .dataTables_length,
@@ -260,7 +259,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- nav -->
     <div class="movies_nav">
         <div class="container">
-            
             <nav class="navbar navbar-default">
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
@@ -268,7 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="nav navbar-nav" style="display: flex; justify-content: center; align-items: center;">
                             <li class="nav-item active"><a asp-controller="Home" asp-action="Index">Home</a></li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Genres <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu multi-column columns-3">
@@ -297,8 +295,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "1")
                                 {
                                     <li class="nav-item dropdown">
-                                                                                               
-
                                         <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Administrator <b class="caret"></b>
                                         </a>
@@ -439,6 +435,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--End: Footer-->
     </footer>
     <!--Chat JavaScripts -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    console.log("Hover is running")
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    console.log("Hover is off")
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+
+
+        jQuery(document).ready(function ($) {
+            console.log("This function is running");
+        });
+        $(document).ready(function () {
+            console.log("This function is running");
+        })
+    </script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/ChatSignalR/chat.js"></script>
     <script src="~/js/ChatSignalR/chatUI.js"></script>
@@ -446,20 +466,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".dropdown").hover(
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-                    $(this).toggleClass('open');
-                },
-                function () {
-                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-                    $(this).toggleClass('open');
-                }
-            );
-        });
-    </script>
+
     <!-- //Bootstrap Core JavaScript -->
     <!-- here stars scrolling icon -->
     <script type="text/javascript">
@@ -482,7 +489,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
     <!--For Datatable-->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <script>

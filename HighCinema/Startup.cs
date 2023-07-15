@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CinemaObject;
+using HighCinema.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using HighCinema.Hubs;
-using Microsoft.AspNetCore.SignalR;
 
 namespace HighCinema
 {
@@ -34,7 +31,9 @@ namespace HighCinema
             //    options.Cookie.HttpOnly = true;
             //    options.Cookie.IsEssential = true;
             //});
-
+            services.AddDbContext<CinemaProject_v4Context>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("HighCinemaConnectionStr"))
+            );
             services.AddSession();
             services.AddMvc();
             services.AddControllersWithViews();
