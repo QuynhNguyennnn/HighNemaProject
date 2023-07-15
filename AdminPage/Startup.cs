@@ -28,7 +28,9 @@ namespace AdminPage
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddRazorPages();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            services.AddDbContext<CinemaProject_v4Context>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("HighCinemaConnectionStr"))
+            );
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);//You can set Time   
