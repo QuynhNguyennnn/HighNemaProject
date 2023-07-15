@@ -4,6 +4,8 @@ using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdminPage.Controllers
 {
@@ -11,9 +13,16 @@ namespace AdminPage.Controllers
     {
         IMovieRepository movieRepository = null;
         public MovieController() => movieRepository = new MovieRepository();
+
+        IGenresRepository genresRepository = new GenreRepository();
         // GET: MovieController
         public ActionResult Index()
         {
+            if (HttpContext.Session.GetString("Role") != "1")
+            {
+                TempData["NeedLoginToBooking"] = "Please login to your account for booking ticket";
+                return Redirect("/Home/Login");
+            }
             var movieList = movieRepository.GetMovies();
             return View(movieList);
         }
@@ -45,6 +54,7 @@ namespace AdminPage.Controllers
         // GET: MovieController/Create
         public ActionResult Create()
         {
+            ViewData["Genres"] = genresRepository.GetAllGenres();
             return View();
         }
 
@@ -118,6 +128,7 @@ namespace AdminPage.Controllers
                 return NotFound();
             }
             var movie = movieRepository.GetMovieByID(id.Value);
+            Console.Write(movie);
             if (movie == null)
             {
                 return NotFound();

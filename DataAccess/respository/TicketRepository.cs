@@ -10,6 +10,7 @@ namespace DataAccess.respository
     public class TicketRepository: ITicketRepository
     {
         public Ticket GetTicketByID(int ticketID) => TicketDAO.Instance.GetTicketByID(ticketID);
+        public IEnumerable<Ticket> GetTicketsByMovieID(int movieID) => TicketDAO.Instance.GetTicketsByMovieID(movieID);
         public IEnumerable<Ticket> GetTickets() => TicketDAO.Instance.GetTicketList();
         public void InsertTicket(Ticket ticket) => TicketDAO.Instance.AddNewTicket(ticket);
         public void DeleteTicket(int ticketID) => TicketDAO.Instance.RemoveTicket(ticketID);

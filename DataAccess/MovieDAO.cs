@@ -10,6 +10,7 @@ namespace DataAccess
     public class MovieDAO
     {
         private static MovieDAO instance = null;
+        private TicketDAO ticketDAO = new TicketDAO();
         public static readonly object instanceLock = new object();
         public static MovieDAO Instance
         {
@@ -107,6 +108,11 @@ namespace DataAccess
                 Movie movie = GetMovieByID(movieID);
                 if (movie != null)
                 {
+                    var tickets = ticketDAO.GetTicketsByMovieID(movieID);
+                    foreach (var ticketsItem in tickets)
+                    {
+                        ticketDAO.RemoveTicket(ticketsItem.Id);
+                    }
                     using var context = new CinemaProject_v4Context();
                     context.Movies.Remove(movie);
                     context.SaveChanges();

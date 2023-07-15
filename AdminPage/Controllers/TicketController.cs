@@ -16,6 +16,11 @@ namespace AdminPage.Controllers
         // GET: FastFoodController
         public ActionResult Index()
         {
+            if (HttpContext.Session.GetString("Role") != "1")
+            {
+                TempData["NeedLoginToBooking"] = "Please login to your account for booking ticket";
+                return Redirect("/Home/Login");
+            }
             var ticketList = ticketRepository.GetTickets();
             return View(ticketList);
         }

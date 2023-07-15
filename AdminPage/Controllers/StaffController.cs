@@ -13,6 +13,11 @@ namespace AdminPage.Controllers
         // GET: MovieController
         public ActionResult Index()
         {
+            if (HttpContext.Session.GetString("Role") != "1")
+            {
+                TempData["NeedLoginToBooking"] = "Please login to your account for booking ticket";
+                return Redirect("/Home/Login");
+            }
             var staffList = staffRepository.GetStaffs();
             return View(staffList);
         }
@@ -47,6 +52,7 @@ namespace AdminPage.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    staff.Status = 1;
                     staffRepository.InsertStaff(staff);
                 }
                 return RedirectToAction(nameof(Index));

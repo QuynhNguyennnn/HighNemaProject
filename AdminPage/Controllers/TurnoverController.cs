@@ -11,6 +11,11 @@ namespace AdminPage.Controllers
     {
         public ActionResult Index()
         {
+            if (HttpContext.Session.GetString("Role") != "1")
+            {
+                TempData["NeedLoginToBooking"] = "Please login to your account for booking ticket";
+                return Redirect("/Home/Login");
+            }
             TicketDAO ticketDAO = new TicketDAO();
             FastFoodDAO fastFoodDAO = new FastFoodDAO();
             BillDAO billDAO = new BillDAO();
