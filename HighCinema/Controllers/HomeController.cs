@@ -97,20 +97,29 @@ namespace HighCinema.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    Console.WriteLine(account.UserName);
+                    Console.WriteLine(account.Password);
+
                     var obj = accountRespository.GetAccounts().Where(a => a.UserName.Equals(account.UserName) && a.Password.Equals(account.Password)).FirstOrDefault();
+                    Console.WriteLine(obj);
                     if (obj != null)
                     {
-                        // SessionAuthentication["Email"] = member.Email;
+                        
+                        HttpContext.Session.SetString("UserID", (obj.Idpeople).ToString());
                         HttpContext.Session.SetString("Username", (obj.UserName).ToString());
                         HttpContext.Session.SetString("Password", (obj.Password).ToString());
                         HttpContext.Session.SetString("Role", (obj.Role).ToString());
-
+                        // SessionAuthentication["Email"] = member.Email
+                        Console.WriteLine("Customer session");
                         Console.WriteLine(HttpContext.Session.GetString("Username"));
                         Console.WriteLine(HttpContext.Session.GetString("Password"));
                         Console.WriteLine(HttpContext.Session.GetString("Role"));
+                        Console.WriteLine(HttpContext.Session.GetString("UserID"));
                     }
 
-                    if((HttpContext.Session.GetString("Username") != null)
+
+
+                    if ((HttpContext.Session.GetString("Username") != null)
                         && (HttpContext.Session.GetString("Password") != null))
                     {
                         TempData["Login"] = "Login Successfully";
@@ -132,8 +141,9 @@ namespace HighCinema.Controllers
 
         public IActionResult Logout()
         {
-
             HttpContext.Session.Clear();
+         
+
             return RedirectToAction(nameof(Login));
         }
 

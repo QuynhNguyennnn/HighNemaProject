@@ -29,6 +29,12 @@ namespace HighCinema.Controllers
             return View(account);
         }
 
+        public IActionResult GetSessionUserId()
+        {
+            var result = HttpContext.Session.GetString("UserID");
+            return Json(result);
+        }
+
         // POST: AccountController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]

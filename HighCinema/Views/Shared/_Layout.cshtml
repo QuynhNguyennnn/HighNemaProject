@@ -31,7 +31,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //banner-slider -->
     <link rel="stylesheet" href="~/assets/list-css/list.css" type="text/css" media="all" />
     <link rel="stylesheet" href="~/assets/news-css/news.css" type="text/css" media="all" />
-
     <!-- pop-up -->
     <link href="~/assets/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
     <!-- //pop-up -->
@@ -43,6 +42,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //js -->
     <!-- banner-bottom-plugin -->
     <link href="~/assets/css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
+    <!--chat box css-->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/chat.css" />
+    <link rel="stylesheet" href="~/assets/css/ChatStyle.css" />
+
+
     <script src="~/assets/js/owl.carousel.js"></script>
     <script>
         $(document).ready(function () {
@@ -223,8 +228,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <input type="text" id="Search" name="Search" placeholder="Search Movie By Name" required>
                     <input type="submit" value="Go">
                 }
-
-
+                @if (@HttpContextAccessor.HttpContext.Session.GetString("UserID") != null)
+                {
+                    string UserID = @HttpContextAccessor.HttpContext.Session.GetString("UserID");
+                    <input type="text" id="senderID" value="@UserID" hidden/>
+                }
             </div>
             <div class="w3l_sign_in_register">
                 <ul>
@@ -343,6 +351,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+        @if (@HttpContextAccessor.HttpContext.Session.GetString("Username") != null)
+        {
+            <div class="chatbox">
+                <div class="chatbox__support"
+                style="position: fixed; right: 30px; bottom: 50px;">
+                    <div class="chatbox__header">
+                        <div class="chatbox__content--header">
+                            <h4 class="chatbox__heading--header">Chat support</h4>
+                            <p class="chatbox__description--header">There are many variations of passages of Lorem Ipsum available</p>
+                        </div>
+                    </div>
+                    <div class="chatbox__messages">
+                        <div id="messagesList"></div>
+                    </div>
+                    <div class="chatbox__footer d-flex flex-row">
+                        <input type="text" class="w-100" id="messageInput" />
+                        <input type="button" id="sendButton" value="Send Message" />
+                    </div>
+                </div>
+                <div class="chatbox__button">
+                    <button class="chatbox_icon">
+                        <img src="~/assets/img/Chat_Icon.png" width="40" height="45" />
+                    </button>
+                </div>
+            </div>
+        }
     </div>
     <!--
         <footer class="border-top footer text-muted">
@@ -404,6 +438,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <!--End: Footer-->
     </footer>
+    <!--Chat JavaScripts -->
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/ChatSignalR/chat.js"></script>
+    <script src="~/js/ChatSignalR/chatUI.js"></script>
+    <script src="~/js/ChatSignalR/app.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script>
