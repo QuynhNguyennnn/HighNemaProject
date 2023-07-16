@@ -94,7 +94,7 @@ namespace HighCinema.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var obj = accountRespository.GetAccounts().Where(a => a.UserName.Equals(account.UserName) && a.Password.Equals(account.Password)).FirstOrDefault();
+                    var obj = accountRespository.GetAccounts().Where(a => a.UserName.Equals(account.UserName) && a.Password.Equals(account.Password) && a.Role == 1).FirstOrDefault();
                     if (obj != null)
                     {
                         // SessionAuthentication["Email"] = member.Email;

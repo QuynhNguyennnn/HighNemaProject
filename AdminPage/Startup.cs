@@ -24,10 +24,9 @@ namespace AdminPage
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddRazorPages();
-            services.AddDbContext<CinemaProject_v4Context>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("HighCinemaConnectionStr"))
-            );
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSession(options =>
@@ -56,6 +55,9 @@ namespace AdminPage
             app.UseRouting();
 
             app.UseAuthorization();
+
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

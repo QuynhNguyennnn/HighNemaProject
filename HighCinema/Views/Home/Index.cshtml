@@ -170,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </li>
                             </ul>
                         </li>
-                        @{
+                        @*@{
                             if (HttpContextAccessor.HttpContext.Session.GetString("Role") == "1")
                             {
                                 <li class="nav-item dropdown">
@@ -211,7 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </ul>
                                 </li>
                             }
-                        }
+                        }*@
                         <!--For Contact function -->
 
                         <li><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>

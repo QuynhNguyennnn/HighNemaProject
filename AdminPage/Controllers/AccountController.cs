@@ -14,6 +14,11 @@ namespace AdminPage.Controllers
         // GET: AccountController
         public ActionResult Index()
         {
+            if (HttpContext.Session.GetString("Role") != "1")
+            {
+                TempData["NeedLoginToBooking"] = "Please login to your account for booking ticket";
+                return Redirect("/Home/Login");
+            }
             var accountList = accountRespository.GetAccounts();
             return View(accountList);
         }
