@@ -161,10 +161,19 @@ namespace HighCinema.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    accountRespository.InsertAccount(account);
+                    if (account.Password != account.ConfirmPassword)
+                    {
+                        TempData["RegisterError"] = "The password and confirmation password do not match";
+                        return View();
+                    }
+                    else
+                    {
+                        accountRespository.InsertAccount(account);
+                        TempData["Register"] = "Register Successfully!";
+                        return Redirect("Login");
+                    }     
                 }
-                TempData["Register"] = "Register Successfully!";
-                return Redirect("Login");
+                return View();
             }
             catch (Exception ex)
             {
