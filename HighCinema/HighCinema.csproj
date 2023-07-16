@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\bootstrap.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\easing.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery-2.1.4.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.dotdotdot.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.flexslider.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.magnific-popup.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.slidey.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\loginValidation.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CinemaObject\CinemaObject.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
@@ -15,6 +26,29 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\icon\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\js\main.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\move-top.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\owl.carousel.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\registerValidation.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\simplePlayer.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
