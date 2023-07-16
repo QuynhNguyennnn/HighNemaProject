@@ -11,6 +11,8 @@ namespace DataAccess.respository
     {
         public void DeleteAccount(int ID) => AccountDAO.Instance.Remove(ID);
 
+        public Account GetAcountByName(string name) => AccountDAO.Instance.GetAccountByName(name);
+
         public Account GetAccountByID(int ID) => AccountDAO.Instance.GetAccountByID(ID);
 
         public IEnumerable<Account> GetAccounts() => AccountDAO.Instance.GetAccountList();

@@ -43,6 +43,21 @@ namespace DataAccess
             return accounts;
         }
 
+        public Account GetAccountByName(string name)
+        {
+            Account account = null;
+            try
+            {
+                using var context = new CinemaProject_v4Context();
+                account = context.Accounts.SingleOrDefault(a => a.UserName == name);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return account;
+        }
+
         public Account GetAccountByID(int ID)
         {
             Account account = null;

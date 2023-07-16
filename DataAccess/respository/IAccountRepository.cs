@@ -10,6 +10,7 @@ namespace DataAccess.respository
     public interface IAccountRepository
     {
         IEnumerable<Account> GetAccounts();
+        Account GetAcountByName(string name);
         Account GetAccountByID(int ID);
         void InsertAccount(Account account);
         void UpdateAccount(Account account);

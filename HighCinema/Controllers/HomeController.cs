@@ -157,20 +157,29 @@ namespace HighCinema.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Register(Account account)
         {
-            try
+            Account _account = accountRespository.GetAcountByName(account.UserName);
+            if (_account == null)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    accountRespository.InsertAccount(account);
+                    if (ModelState.IsValid)
+                    {
+                        accountRespository.InsertAccount(account);
+                    }
+                    TempData["Register"] = "Register Successfully!";
+                    return Redirect("Login");
                 }
-                TempData["Register"] = "Register Successfully!";
-                return Redirect("Login");
+                catch (Exception ex)
+                {
+                    ViewBag.Message = ex.Message;
+                    Console.WriteLine(ex.Message);
+                    return View();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                ViewBag.Message = ex.Message;
-                Console.WriteLine(ex.Message);
-                return View();
+                TempData["Register"] = "Register Failled!";
+                return View(account);
             }
         }
 
